@@ -3,13 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Terminal</title>
     <link rel="stylesheet" href="style.css">
-    <title>Meu site com loop!</title>
 </head>
 <body>
-    <h1>Site com loop Hack!</h1>
-    <p><a href="#" id="startLoop">Clique Aqui</a></p>
-    <div id="output"></div>
-<script src="script.js"></script>
+    <!-- Efeito de partículas -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Site com Loop Hack</h1>
+            <p>>_ Terminal de acesso remoto | Modo: AUTO HACK</p>
+        </div>
+        
+        <div class="control-panel">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>STATUS: <span id="statusText">ATIVO</span></span>
+            </div>
+            <button class="control-btn" id="pauseBtn">PAUSE [P]</button>
+            <button class="control-btn" id="speedUpBtn">SPEED+ [↑]</button>
+            <button class="control-btn" id="speedDownBtn">SPEED- [↓]</button>
+            <button class="control-btn" id="clearBtn">CLEAR [C]</button>
+        </div>
+        
+        <pre id="output"></pre>
+        
+        <div class="footer">
+            <p>>_ Comandos: <a href="#" data-text="[ESC]">[ESC]</a> Parar | 
+            <a href="#" data-text="[R]">[R]</a> Reiniciar | 
+            <a href="#" data-text="[C]">[C]</a> Limpar</p>
+            <p>>_ Sistema: <span id="counter">0</span> tentativas | 
+            Velocidade: <span id="speed">100</span>ms</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>

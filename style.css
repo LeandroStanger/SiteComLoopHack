@@ -1,22 +1,274 @@
-body{
-    background-color: black;
+body {
+    background-color: #0a0a0a;
     color: #00ff00;
-    font-family: monospace;
-    padding: 20px;    
+    font-family: 'Courier New', monospace;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 255, 0, 0.03) 0%, transparent 20%);
+    position: relative;
+    overflow-x: hidden;
 }
 
-a{
+/* Efeito de scanline */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0, 255, 0, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+a {
     color: #00ff00;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
+    position: relative;
+    padding: 2px 5px;
+    transition: all 0.3s ease;
 }
 
-a:hover{
+a:hover {
     color: lime;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 3px;
 }
 
-#output{
-    margin-top: 30px;
-    white-space: pre-wrap;
+/* Efeito de glitch para links */
+a::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    color: #ff00ff;
+    overflow: hidden;
+    width: 0;
+    transition: width 0.3s;
+}
+
+a:hover::before {
+    width: 100%;
+}
+
+#output {
+    background: rgba(0, 0, 0, 0.8);
+    color: #0f0;
+    padding: 20px;
+    height: 400px;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.2),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    position: relative;
+    margin-top: 20px;
+}
+
+/* Efeito de terminal no output */
+#output::before {
+    content: ">>> TERMINAL DE HACK <<<";
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: #000;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #0f0;
+    letter-spacing: 1px;
+}
+
+/* Scrollbar personalizada */
+#output::-webkit-scrollbar {
+    width: 10px;
+}
+
+#output::-webkit-scrollbar-track {
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 5px;
+}
+
+#output::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.3);
+    border-radius: 5px;
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 0, 0.5);
+}
+
+/* Efeito de cursor piscando */
+#output::after {
+    content: "█";
+    animation: blink 1s infinite;
+    color: #0f0;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Container principal */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Header hacker */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-bottom: 1px solid #0f0;
+    position: relative;
+}
+
+.header h1 {
+    color: #0f0;
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #0f0;
+    animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* Painel de controle */
+.control-panel {
+    background: rgba(0, 20, 0, 0.3);
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.control-btn {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid #0f0;
+    color: #0f0;
+    padding: 8px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: monospace;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background: rgba(0, 255, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #0f0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #output {
+        height: 300px;
+        font-size: 14px;
+    }
+    
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Efeito de partículas (opcional) */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: #0f0;
+    animation: float 10s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
 }
