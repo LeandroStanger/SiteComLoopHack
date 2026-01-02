@@ -3,6 +3,7 @@
 Um projeto web interativo e experimental que demonstra um efeito visual em loop, provavelmente envolvendo animações ou interações dinâmicas controladas por JavaScript.
 
 **🔗 Demonstração Online:** [https://leandrostanger.github.io/SiteComLoopHack/](https://leandrostanger.github.io/SiteComLoopHack/)
+
 **📦 Repositório:** [https://github.com/LeandroStanger/SiteComLoopHack](https://github.com/LeandroStanger/SiteComLoopHack)
 
 ## ✨ Funcionalidades Observadas
@@ -68,4 +69,3 @@ Para entender exatamente qual efeito foi implementado, a melhor forma é **inspe
 **Desenvolvido por Leandro Stanger**
 
 *Se você gostou desse experimento, deixe uma estrela ⭐ no repositório!*
-```
